@@ -29,6 +29,7 @@ public class AppointmentsService {
     }
 
     public AppointmentsDto getAppointmentById(Long id) {
+         //Validation - check if appointment exists before fetching
         AppointmentsModel appointment = appointmentsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
         return convertToDto(appointment);
@@ -41,6 +42,7 @@ public class AppointmentsService {
     }
 
     public AppointmentsDto updateAppointment(Long id, AppointmentsDto appointmentsDto) {
+         //Validation - check existing appointment before update
         AppointmentsModel existingAppointment = appointmentsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
         
@@ -48,12 +50,14 @@ public class AppointmentsService {
         existingAppointment.setTime(appointmentsDto.getTime());
         existingAppointment.setStatus(appointmentsDto.getStatus());
         
+        // Null check validation for userId
         if (appointmentsDto.getUserId() != null) {
             UserModel user = userRepository.findById(appointmentsDto.getUserId())
                     .orElseThrow(() -> new RuntimeException("User not found"));
             existingAppointment.setUser(user);
         }
 
+        // Null check validation for propertyId
         if (appointmentsDto.getPropertyId() != null) {
             PropertiesModel property = propertiesRepository.findById(appointmentsDto.getPropertyId())
                     .orElseThrow(() -> new RuntimeException("Property not found"));
@@ -91,6 +95,7 @@ public class AppointmentsService {
         entity.setTime(dto.getTime());
         entity.setStatus(dto.getStatus());
         
+        // Validation in convertToEntity
         if (dto.getUserId() != null) {
             UserModel user = userRepository.findById(dto.getUserId())
                     .orElseThrow(() -> new RuntimeException("User not found"));
