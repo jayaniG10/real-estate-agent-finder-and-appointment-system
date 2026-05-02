@@ -16,6 +16,6 @@ public class AppointmentsDto {
     private Long propertyId;
     private LocalDate date;
     private LocalTime time;
-    private AppointmentsModel.AppointmentStatus status;
+    private AppointmentsModel.AppointmentStatus status;// Enum restricts to: pending, confirmed, cancel, completed
     private LocalDateTime createdAt;
 }
