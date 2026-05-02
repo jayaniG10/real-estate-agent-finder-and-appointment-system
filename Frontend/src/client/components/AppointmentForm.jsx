@@ -64,6 +64,7 @@ const AppointmentForm = ({ propertyTitle, isSubmitting, onCancel, onSubmit, onCh
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        //Form validation - check required fields
         if (!formValues.date || !formValues.time) {
             setErrorMessage('Date and time are required.');
             return;
