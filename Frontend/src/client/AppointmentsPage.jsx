@@ -201,6 +201,7 @@ const AppointmentsPage = ({ currentUser }) => {
         );
     };
 
+    // Collision validation - check if time slot is already booked
     const checkAppointmentCollision = ({ propertyId, date, time, excludeId = null }) => {
         const normalizedDate = normalizeDateValue(date);
         const normalizedTime = normalizeTimeValue(time);
@@ -256,6 +257,7 @@ const AppointmentsPage = ({ currentUser }) => {
         const { propertyId } = rescheduleAppointment;
         const { date, time } = rescheduleValues;
 
+        // Availability validation before reschedule
         if (!date || !time) {
             setRescheduleAvailability('Select new date and time to check availability.');
             return;
@@ -296,6 +298,7 @@ const AppointmentsPage = ({ currentUser }) => {
             return;
         }
 
+        // Final validation before saving reschedule
         const isBooked = checkAppointmentCollision({
             propertyId: rescheduleAppointment.propertyId,
             date,
@@ -348,6 +351,7 @@ const AppointmentsPage = ({ currentUser }) => {
     };
 
     const handleCancelAppointment = async (appointment) => {
+        // User confirmation validation before cancellation
         const confirmed = window.confirm('Cancel this appointment?');
         if (!confirmed) {
             return;
