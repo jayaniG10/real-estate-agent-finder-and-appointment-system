@@ -4,6 +4,7 @@ const APPOINTMENTS_API_URL = 'http://localhost:8080/api/appointments';
 const USERS_API_URL = 'http://localhost:8080/api/users';
 const PROPERTIES_API_URL = 'http://localhost:8080/api/properties';
 
+// Error message helper with validation.
 const getErrorMessage = (error, fallbackMessage) => {
     if (error instanceof Error && error.message) {
         return error.message;
@@ -189,6 +190,7 @@ const AppointmentManagementPage = () => {
     };
 
     const updateStatusForAppointment = async (appointment, newStatus) => {
+        // Validation - check if appointment exists
         if (!appointment) {
             return;
         }
@@ -212,6 +214,7 @@ const AppointmentManagementPage = () => {
                 })
             });
 
+            // HTTP response validation
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
                 throw new Error(errorData.message || 'Unable to update appointment status.');
