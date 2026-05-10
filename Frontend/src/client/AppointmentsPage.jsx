@@ -160,17 +160,19 @@ const AppointmentsPage = ({ currentUser }) => {
         return () => clearTimeout(timer);
     }, [loadPageData, currentUser?.id]);
 
+    // Overrides window storage event to sync data across tabs
     useEffect(() => {
         const handleAppointmentsUpdated = () => {
-            void loadPageData();
+            void loadPageData();// Overriding the default storage behavior
         };
 
         const handleStorage = (event) => {
             if (event.key === 'appointmentsUpdated') {
-                void loadPageData();
+                void loadPageData();// Custom override for storage changes
             }
         };
 
+        // Overriding default window events with custom handlers
         window.addEventListener('appointmentsUpdated', handleAppointmentsUpdated);
         window.addEventListener('storage', handleStorage);
 
