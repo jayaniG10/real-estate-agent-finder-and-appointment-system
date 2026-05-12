@@ -1,0 +1,21 @@
+package com.realstate.property_management_back.appointments;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AppointmentsDto {
+    private Long id;
+    private Long userId;
+    private Long propertyId;
+    private LocalDate date;
+    private LocalTime time;
+    private AppointmentsModel.AppointmentStatus status;
+    private LocalDateTime createdAt;
+}
