@@ -90,6 +90,7 @@ const isPastDateTime = (date, time) => {
     return selectedDateTime < now;
 };
 
+// OVERLOADING - getStatusBadge handles different status values differently
 const getStatusBadge = (status) => {
     switch (status) {
         case 'pending':
