@@ -198,13 +198,13 @@ const AppointmentManagementPage = () => {
         setErrorMessage('');
 
         try {
-            // UPDATE -(updateStatusForAppointment function)
+            // CONSTRUCTOR - Creating new appointment object for API call
             const response = await fetch(`${APPOINTMENTS_API_URL}/${appointment.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
+                body: JSON.stringify({// Object literal constructor
                     id: appointment.id,
                     userId: Number(appointment.userId),
                     propertyId: Number(appointment.propertyId),
