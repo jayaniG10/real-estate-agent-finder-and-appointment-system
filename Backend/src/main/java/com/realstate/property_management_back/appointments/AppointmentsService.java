@@ -57,7 +57,7 @@ public class AppointmentsService {
             existingAppointment.setUser(user);
         }
 
-      
+        // Null check validation for propertyId
         if (appointmentsDto.getPropertyId() != null) {
             PropertiesModel property = propertiesRepository.findById(appointmentsDto.getPropertyId())
                     .orElseThrow(() -> new RuntimeException("Property not found"));
@@ -66,6 +66,10 @@ public class AppointmentsService {
 
         AppointmentsModel updatedAppointment = appointmentsRepository.save(existingAppointment);
         return convertToDto(updatedAppointment);
+    }
+
+    public void deleteAppointment(Long id) {
+        appointmentsRepository.deleteById(id);
     }
 
     private AppointmentsDto convertToDto(AppointmentsModel appointment) {
